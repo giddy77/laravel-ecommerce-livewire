@@ -16,6 +16,7 @@
 
     <!-- Scripts -->
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
+    @livewireStyles();
 </head>
 <body>
     <div id="app">
@@ -79,5 +80,6 @@
     </div>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+    @livewireScripts();
 </body>
 </html>
