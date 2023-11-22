@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\DashboardController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -25,4 +26,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard.index');
+
+    //category routes
+    Route::controller(CategoryController::class)->name('category.')->group(function(){
+        Route::get('category', 'index')->name('index');
+        Route::get('caetgory/create','create')->name('create');
+        Route::get('category/store', 'store')->name('store');
+});
 });
