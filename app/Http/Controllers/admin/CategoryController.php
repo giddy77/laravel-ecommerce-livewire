@@ -32,17 +32,30 @@ class CategoryController extends Controller
     public function store(CategoryFormRequest $request)
     {
         $data = $request->validated();
+
+
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time().'.'.$ext;
+
+            $path = public_path('uploads/category');
+
+            $file->move($path,$filename);
+        }
+
         Category::create([
             'name'=>$data['name'],
             'slug'=>Str::slug($data['slug']),
             'description'=>$data['description'],
-            'image'=>$data['image'],
+            'image'=>$filename,
             'meta_title'=>$data['meta_title'],
             'meta_keyword'=>$data['meta_keyword'],
             'meta_description'=>$data['meta_description'],
-            'status' =>$request->status
-
+            'status' =>$request->status == true ? '1':'0'
         ]);
+
+        return redirect('/admin/category')->with('success','category created successfully');
     }
 
     /**
@@ -56,17 +69,17 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Category $category)
     {
-        //
+        return view('admin.category.edit',['category'=>$category]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CategoryFormRequest $request, string $category)
     {
-        //
+        return $category;
     }
 
     /**

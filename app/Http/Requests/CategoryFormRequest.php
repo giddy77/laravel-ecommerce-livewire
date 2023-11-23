@@ -26,6 +26,7 @@ class CategoryFormRequest extends FormRequest
             'slug'=>'required|string',
             'description'=>'required',
             'image'=>'nullable|mimes:jpeg,jpg,png',
+            'meta_title'=>'required',
             'meta_keyword'=>'required|string',
             'meta_description'=>'required'
         ];
