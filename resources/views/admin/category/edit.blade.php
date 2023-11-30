@@ -34,10 +34,11 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="image">Image</label>
-                            <input type="file" name="image" class="form-control"/>
-                            <img src="{{ asset('/uploads/category/'.$category->image) }}" width="60px" height="60px" alt="">
+                            <input type="file" name="image"  class="form-control"/>
+                            <img class="mt-3" src="{{ asset('/uploads/category/'.$category->image) }}" width="60px" height="60px" alt="">
                             @error('image')<span class="text-danger">{{$message}}</span>   @enderror     
                         </div>
+                        <input type="text" name="image_value" value="{{$category->image}}" hidden>
                         <div class="col-md-6 mb-3">
                             <label for="status">Status</label><br><br>
                             <input type="checkbox" name="status" {{$category->status == '1' ? 'checked':''}}/>   

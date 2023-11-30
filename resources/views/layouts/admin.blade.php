@@ -38,7 +38,13 @@
     </div>
 
      <!-- plugins:js -->
+     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
   <script src="{{ asset('admin/vendors/base/vendor.bundle.base.js')}}"></script>
+ 
+
+ 
   <!-- endinject -->
   <!-- Plugin js for this page-->
   <script src="{{  asset('admin/vendors/chart.js/Chart.min.js')}}"></script>

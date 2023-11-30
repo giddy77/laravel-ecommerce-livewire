@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use \App\Http\Requests\CategoryFormRequest;
 use App\Models\Category;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
@@ -79,7 +80,45 @@ class CategoryController extends Controller
      */
     public function update(CategoryFormRequest $request, string $category)
     {
-        return $category;
+        $data = $request->validated();
+
+        $category = Category::find($category);
+
+        if($request->hasFile('image')){
+
+            $path = public_path('uploads/category'.$category->image);
+            if(File::exists($path)){
+                File::delete($path);
+            }
+            $file = $request->file('image');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time().'.'.$ext;
+
+            $path = public_path('uploads/category');
+
+            $file->move($path,$filename);
+
+          
+        }else
+        {
+            return redirect()->back()->with('error', 'please upload file!');
+        }
+
+        $category->update(
+            [
+            'name'=>$data['name'],
+            'slug'=>Str::slug($data['slug']),
+            'description'=>$data['description'],
+            'image'=>$filename,
+            'meta_title'=>$data['meta_title'],
+            'meta_keyword'=>$data['meta_keyword'],
+            'meta_description'=>$data['meta_description'],
+            'status' =>$request->status == true ? '1':'0'
+            ]
+        );
+       
+
+        return redirect('/admin/category')->with('success', 'categorory updated successfully');
     }
 
     /**
