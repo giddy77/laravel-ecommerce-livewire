@@ -3,7 +3,7 @@
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
       <ul class="nav">
         <li class="nav-item">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="{{ route('home') }}">
             <i class="mdi mdi-home menu-icon"></i>
             <span class="menu-title">Dashboard</span>
           </a>
@@ -16,25 +16,26 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="collapse" href="" aria-expanded="false" aria-controls="ui-basic">
-            <i class="mdi mdi-view-headline menu-icon"></i>
-            <span class="menu-title">Categories</span>
-            <i class="menu-arrow"></i>
+          <a class="nav-link" data-bs-toggle="dropdown" href="#" aria-expanded="false" aria-controls="ui-basic">
+              <i class="mdi mdi-view-headline menu-icon"></i>
+              <span class="menu-title">Categories</span>
+              <i class="menu-arrow"></i>
           </a>
-          <div class="collapse" id="ui-basic">
-            <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="{{route('category.index')}}">View Categories</a></li>
-              <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
-            </ul>
+          <div class="dropdown-menu" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="{{ route('category.index') }}">View Categories</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+              </ul>
           </div>
-        </li>
+      </li>
+      
         <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+          <a class="nav-link" data-bs-toggle="dropdown" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
             <i class="mdi mdi-view-headline menu-icon"></i>
             <span class="menu-title">products</span>
             <i class="menu-arrow"></i>
           </a>
-          <div class="collapse" id="ui-basic">
+          <div class="dropdown-menu" id="ui-basic">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
               <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
@@ -42,7 +43,7 @@
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="">
+          <a class="nav-link" href="{{ route('brand.index') }}">
             <i class="mdi mdi-view-headline menu-icon"></i>
             <span class="menu-title">Brands</span>
           </a>
